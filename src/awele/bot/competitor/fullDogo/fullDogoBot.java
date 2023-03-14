@@ -7,7 +7,7 @@ import awele.core.InvalidBotException;
 
 public class fullDogoBot extends CompetitorBot{
 
-	private static int ORIGIN_DEPTH = 4;
+	private static int ORIGIN_DEPTH = 7;
 	
     public fullDogoBot () throws InvalidBotException
     {

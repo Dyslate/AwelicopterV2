@@ -13,7 +13,7 @@ public abstract class MinMaxNodeAwelicopter
     private static int player;
 
     /** Profondeur maximale */
-    private static int maxDepth = 4;
+    private static int maxDepth;
 
     /** L'évaluation du noeud */
     private double evaluation;
@@ -35,7 +35,11 @@ public abstract class MinMaxNodeAwelicopter
             this.decision = new double[Board.NB_HOLES];
             /* Initialisation de l'évaluation courante */
             this.evaluation = this.worst();
-
+            maxDepth = 12- board.getNbSeeds()/10;
+          /*  if(depth>6&&board.getNbSeeds()<10){
+                maxDepth = 10;
+            }
+*/
 
             /* On parcourt toutes les coups possibles */
             for (int i = 0; i < Board.NB_HOLES; i++) {
@@ -117,7 +121,7 @@ public abstract class MinMaxNodeAwelicopter
      */
     protected static void initialize (Board board, int depth)
     {
-        MinMaxNodeAwelicopter.maxDepth = depth + (int)Math.round(((nbGrainesTotale)*2.0)/board.getNbSeeds());;
+        MinMaxNodeAwelicopter.maxDepth = depth + (int)Math.round(((nbGrainesTotale)*1.0)/board.getNbSeeds());;
         MinMaxNodeAwelicopter.player = board.getCurrentPlayer ();
     }
 

@@ -29,7 +29,7 @@ public class Awelicopter extends CompetitorBot {
 
     @Override
     public double[] getDecision(Board board) {
-        MinMaxNodeAwelicopter.initialize (board, 4);
+        MinMaxNodeAwelicopter.initialize (board, 8);
         return new MaxNodeAwelicopter(board).getDecision ();
     }
 
