@@ -1,10 +1,11 @@
 package awele.bot.competitor.Awelicopter;
 
 import awele.bot.CompetitorBot;
+import awele.bot.demo.random.RandomBot;
 import awele.core.Board;
 import awele.core.InvalidBotException;
 
-import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 
 public class Awelicopter extends CompetitorBot {
@@ -20,6 +21,8 @@ public class Awelicopter extends CompetitorBot {
 
     @Override
     public void initialize()  {
+
+
     }
 
     @Override
@@ -29,13 +32,61 @@ public class Awelicopter extends CompetitorBot {
 
     @Override
     public double[] getDecision(Board board) {
-        MinMaxNodeAwelicopter.initialize (board, 8);
+        MinMaxNodeAwelicopter.initialize (board, 9);
         return new MaxNodeAwelicopter(board).getDecision ();
     }
 
-
+    private static String formatDuration (final long l)
+    {
+        final long hr = TimeUnit.MILLISECONDS.toHours (l);
+        final long min = TimeUnit.MILLISECONDS.toMinutes (l - TimeUnit.HOURS.toMillis(hr));
+        final long sec = TimeUnit.MILLISECONDS.toSeconds (l - TimeUnit.HOURS.toMillis(hr) - TimeUnit.MINUTES.toMillis (min));
+        final long ms = TimeUnit.MILLISECONDS.toMillis(l - TimeUnit.HOURS.toMillis (hr) - TimeUnit.MINUTES.toMillis (min) - TimeUnit.SECONDS.toMillis (sec));
+        return String.format("%02d:%02d:%02d.%03d", hr, min, sec, ms);
+    }
 
     @Override
     public void learn() {
+        long max = Integer.MAX_VALUE;
+        long randomRunningTime = 0;
+        int nbMovesRandom = 0;
+        RandomBot random = null;
+        try
+        {
+            random = new RandomBot ();
+            random.learn ();
+        } catch (InvalidBotException e) {
+            e.printStackTrace();
+        }
+
+        for (int k = 0; k < 100; k++)
+        {
+            CoreLearn aweleRandom = null;
+            aweleRandom = new CoreLearn(random,random);
+            try
+            {
+                aweleRandom.play ();
+            }
+            catch (InvalidBotException ignored)
+            {
+            }
+            nbMovesRandom += aweleRandom.getNbMoves ();
+            randomRunningTime += aweleRandom.getRunningTime ();
+            if(randomRunningTime/nbMovesRandom<max){
+                max = randomRunningTime/nbMovesRandom;
+            }
+        }
+        long randomAverageDecisionTime = max;
+
+
+
+        CoreLearn awele = new CoreLearn(this, random);
+        try {
+            awele.play ();
+            long decisionTime = (long) (((2 * awele.getRunningTime ()) / awele.getNbMoves ())-randomAverageDecisionTime);
+            System.out.println("Durée calculé dans la fonction learn: "+formatDuration(decisionTime));
+        } catch (InvalidBotException e) {
+            e.printStackTrace();
+        }
     }
 }

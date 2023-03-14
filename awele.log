@@ -22,9 +22,9 @@ Instanciation du bot "FullDogo"
 Nom du bot : FullDogo
 Auteur(s) : VIADER - OTTINGER
 Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.122
-Usage mémoire : 390,1 KiB
-Usage mémoire maximum : 101,9 MiB
+Durée d'une prise de décision : 00:00:00.171
+Usage mémoire : 390,0 KiB
+Usage mémoire maximum : 139,4 MiB
 
 Bot 3/4
 Classe : awele.bot.random.RandomBot
@@ -34,55 +34,24 @@ Auteur(s) : Alexandre Blansché
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
 Usage mémoire : 600 B
-Usage mémoire maximum : 388,8 KiB
+Usage mémoire maximum : 389,3 KiB
 
 Bot 4/4
 Classe : awele.bot.competitor.Awelicopter.Awelicopter
 Instanciation du bot "Awelicopter"
 Nom du bot : Awelicopter
 Auteur(s) : Lucas FRANCHINA et Tim BRANSTETT
-Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.117
-Usage mémoire : 48,2 KiB
-Usage mémoire maximum : 164,6 MiB
+Instanciation du bot "Random"
+Temps d'apprentissage : 00:00:08.822
+Durée d'une prise de décision : 00:00:00.164
+Usage mémoire : 50,8 KiB
+Usage mémoire maximum : 100,1 MiB
 
 4 bots ont été instanciés
-Durée du chargement : 00:00:08.061
+Durée du chargement : 00:00:19.718
 Mémoire utilisée : 1,9 MiB
 
 Que le championnat commence !
 
 Affrontement 1/6
 Random vs. FullDogo
-Score : 0.0 - 3.0
-FullDogo a gagné
-Nombre de coups joués : 38.7 par match
-Durée : 00:00:01.914 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 2/6
-Random vs. Random
-Score : 1.1 - 1.85
-Random a gagné
-Nombre de coups joués : 88.65 par match
-Durée : 00:00:00.000 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 3/6
-Random vs. Awelicopter
-Score : 0.0 - 3.0
-Awelicopter a gagné
-Nombre de coups joués : 33.3 par match
-Durée : 00:00:01.748 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 4/6
-FullDogo vs. Random
-Score : 3.0 - 0.0
-FullDogo a gagné
-Nombre de coups joués : 41.7 par match
-Durée : 00:00:02.057 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 5/6
-FullDogo vs. Awelicopter
