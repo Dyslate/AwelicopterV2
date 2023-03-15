@@ -20,9 +20,9 @@ Classe : awele.bot.competitor.fullDogo.fullDogoBot
 Instanciation du bot "FullDogo"
 Nom du bot : FullDogo
 Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.171
-Usage mémoire : 390,0 KiB
-Usage mémoire maximum : 139,4 MiB
+Durée d'une prise de décision : 00:00:00.146
+Usage mémoire : 390,7 KiB
+Usage mémoire maximum : 126,4 MiB
 
 Bot 3/4
 Classe : awele.bot.random.RandomBot
@@ -38,13 +38,17 @@ Classe : awele.bot.competitor.Awelicopter.Awelicopter
 Instanciation du bot "Awelicopter"
 Nom du bot : Awelicopter
 Instanciation du bot "Random"
-Temps d'apprentissage : 00:00:08.822
-Durée d'une prise de décision : 00:00:00.164
-Usage mémoire : 50,8 KiB
-Usage mémoire maximum : 100,1 MiB
+Instanciation du bot "Awelicopter"
+Instanciation du bot "Awelicopter"
+Instanciation du bot "Awelicopter"
+Instanciation du bot "Awelicopter"
+Temps d'apprentissage : 00:00:28.043
+Durée d'une prise de décision : 00:00:00.114
+Usage mémoire : 62,2 KiB
+Usage mémoire maximum : 145,2 MiB
 
 4 bots ont été instanciés
-Durée du chargement : 00:00:19.718
+Durée du chargement : 00:00:38.837
 Mémoire utilisée : 1,9 MiB
 
 Que le championnat commence !

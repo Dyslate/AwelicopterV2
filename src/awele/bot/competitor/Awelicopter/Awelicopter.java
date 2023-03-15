@@ -10,6 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Awelicopter extends CompetitorBot {
 
+    public int depth;
+
+    public static int goodDepth;
     public Awelicopter () throws InvalidBotException
     {
         this.setBotName ("Awelicopter");
@@ -17,6 +20,15 @@ public class Awelicopter extends CompetitorBot {
         this.addAuthor ("Tim BRANSTETT");
 
     }
+    public Awelicopter (int depth) throws InvalidBotException
+    {
+        this.setBotName ("Awelicopter");
+        this.addAuthor ("Lucas FRANCHINA");
+        this.addAuthor ("Tim BRANSTETT");
+        this.depth = depth;
+
+    }
+
 
 
     @Override
@@ -32,7 +44,17 @@ public class Awelicopter extends CompetitorBot {
 
     @Override
     public double[] getDecision(Board board) {
-        MinMaxNodeAwelicopter.initialize (board, 9);
+        if(goodDepth!=0){
+            MinMaxNodeAwelicopter.initialize (board, goodDepth);
+            return new MaxNodeAwelicopter(board).getDecision ();
+        } else {
+            MinMaxNodeAwelicopter.initialize (board, depth);
+            return new MaxNodeAwelicopter(board).getDecision ();
+        }
+    }
+
+    public double[] getDecision(Board board, int laBonneDepth) {
+        MinMaxNodeAwelicopter.initialize (board, laBonneDepth);
         return new MaxNodeAwelicopter(board).getDecision ();
     }
 
@@ -77,16 +99,34 @@ public class Awelicopter extends CompetitorBot {
             }
         }
         long randomAverageDecisionTime = max;
+        for(int i = 6;i<15;i++){
 
+            CoreLearn awele = null;
+            try {
+                awele = new CoreLearn(new Awelicopter(i), random);
+            } catch (InvalidBotException e) {
+                e.printStackTrace();
+            }
+            try {
+                awele.play ();
 
+                long decisionTime = (long) (((2 * awele.getRunningTime ()) / awele.getNbMoves ())-randomAverageDecisionTime);
 
-        CoreLearn awele = new CoreLearn(this, random);
-        try {
-            awele.play ();
-            long decisionTime = (long) (((2 * awele.getRunningTime ()) / awele.getNbMoves ())-randomAverageDecisionTime);
-            System.out.println("Durée calculé dans la fonction learn: "+formatDuration(decisionTime));
-        } catch (InvalidBotException e) {
-            e.printStackTrace();
+                String decisionTimeString = formatDuration(decisionTime);
+                String lastThreeChars = decisionTimeString.substring(decisionTimeString.length() - 3);
+
+                System.out.println(lastThreeChars);
+                if(Integer.parseInt(lastThreeChars)>200){
+                    System.out.println("la bonne depth est : "+(i-1));
+                    goodDepth = i - 1;
+                    break;
+                }
+                System.out.println("Durée calculé dans la fonction learn: "+formatDuration(decisionTime));
+            } catch (InvalidBotException e) {
+                e.printStackTrace();
+            }
+
         }
+
     }
 }
