@@ -35,11 +35,12 @@ public abstract class MinMaxNodeAwelicopter
             this.decision = new double[Board.NB_HOLES];
             /* Initialisation de l'évaluation courante */
             this.evaluation = this.worst();
-            maxDepth = 12- board.getNbSeeds()/10;
-          /*  if(depth>6&&board.getNbSeeds()<10){
-                maxDepth = 10;
+
+        /*    if(Awelicopter.goodDepth!=0){
+                maxDepth = Awelicopter.goodDepth + 4 - (board.getNbSeeds() / 10);
             }
-*/
+
+         */
 
             /* On parcourt toutes les coups possibles */
             for (int i = 0; i < Board.NB_HOLES; i++) {

@@ -1,8 +1,6 @@
 package awele.bot.competitor.Awelicopter;
 
 import awele.bot.Bot;
-import awele.core.Awele;
-import awele.core.Board;
 import awele.core.InvalidBotException;
 import awele.output.OutputWriter;
 
@@ -22,11 +20,13 @@ public class CoreLearn extends OutputWriter
     {
         this.players = new Bot [2];
         this.players [0] = player1;
-        this.players [1] = player2;
+        this.players [1] =  player2;
         this.scores = new int [2];
         this.nbMoves = 0;
         this.runningTime = 0;
     }
+
+
 
     private int [] game (int firstPlayer) throws InvalidBotException
     {
@@ -48,7 +48,7 @@ public class CoreLearn extends OutputWriter
             else
                 nbStagnant++;
             if ((moveScore < 0) ||
-                    (board.getScore (Board.otherPlayer (board.getCurrentPlayer ())) >= 25) ||
+                    (board.getScore (BoardLearn.otherPlayer (board.getCurrentPlayer ())) >= 25) ||
                     (board.getNbSeeds () <= 6) ||
                     (nbStagnant >= CoreLearn.MAX_STAGNANT))
                 end = true;

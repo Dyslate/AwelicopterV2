@@ -20,9 +20,9 @@ Classe : awele.bot.competitor.fullDogo.fullDogoBot
 Instanciation du bot "FullDogo"
 Nom du bot : FullDogo
 Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.146
-Usage mémoire : 390,7 KiB
-Usage mémoire maximum : 126,4 MiB
+Durée d'une prise de décision : 00:00:00.165
+Usage mémoire : 391,1 KiB
+Usage mémoire maximum : 35,4 MiB
 
 Bot 3/4
 Classe : awele.bot.random.RandomBot
@@ -31,7 +31,7 @@ Nom du bot : Random
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
 Usage mémoire : 600 B
-Usage mémoire maximum : 389,3 KiB
+Usage mémoire maximum : 397,6 KiB
 
 Bot 4/4
 Classe : awele.bot.competitor.Awelicopter.Awelicopter
@@ -42,16 +42,75 @@ Instanciation du bot "Awelicopter"
 Instanciation du bot "Awelicopter"
 Instanciation du bot "Awelicopter"
 Instanciation du bot "Awelicopter"
-Temps d'apprentissage : 00:00:28.043
-Durée d'une prise de décision : 00:00:00.114
-Usage mémoire : 62,2 KiB
-Usage mémoire maximum : 145,2 MiB
+Temps d'apprentissage : 00:00:26.935
+Durée d'une prise de décision : 00:00:00.167
+Usage mémoire : 77,0 KiB
+Usage mémoire maximum : 127,2 MiB
 
 4 bots ont été instanciés
-Durée du chargement : 00:00:38.837
-Mémoire utilisée : 1,9 MiB
+Durée du chargement : 00:00:40.471
+Mémoire utilisée : 2,0 MiB
 
 Que le championnat commence !
 
 Affrontement 1/6
 Random vs. FullDogo
+Score : 0.0 - 3.0
+FullDogo a gagné
+Nombre de coups joués : 38.9 par match
+Durée : 00:00:01.820 par match
+Mémoire utilisée : 1,9 MiB
+
+Affrontement 2/6
+Random vs. Random
+Score : 0.6 - 2.4
+Random a gagné
+Nombre de coups joués : 85.5 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 1,9 MiB
+
+Affrontement 3/6
+Random vs. Awelicopter
+Score : 0.0 - 3.0
+Awelicopter a gagné
+Nombre de coups joués : 36.7 par match
+Durée : 00:00:02.133 par match
+Mémoire utilisée : 1,9 MiB
+
+Affrontement 4/6
+FullDogo vs. Random
+Score : 3.0 - 0.0
+FullDogo a gagné
+Nombre de coups joués : 39.1 par match
+Durée : 00:00:01.944 par match
+Mémoire utilisée : 1,9 MiB
+
+Affrontement 5/6
+FullDogo vs. Awelicopter
+Score : 0.0 - 3.0
+Awelicopter a gagné
+Nombre de coups joués : 84.5 par match
+Durée : 00:00:13.269 par match
+Mémoire utilisée : 1,9 MiB
+
+Affrontement 6/6
+Random vs. Awelicopter
+Score : 0.0 - 3.0
+Awelicopter a gagné
+Nombre de coups joués : 43.5 par match
+Durée : 00:00:02.747 par match
+Mémoire utilisée : 1,9 MiB
+
+Durée du championnat : 00:03:39.376
+
+Scores finaux :
+Random : 0.6
+FullDogo : 6.0
+Random : 2.4
+Awelicopter : 9.0
+
+Rangs :
+1. Awelicopter : 9.0
+2. FullDogo : 6.0
+3. Random : 2.4
+4. Random : 0.6

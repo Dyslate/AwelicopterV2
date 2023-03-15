@@ -27,8 +27,8 @@ public class BoardLearn extends Board {
     {
         this.random = new Random (1 + System.currentTimeMillis ());
         this.score = new int [2];
-        this.holes = new int [2][Board.NB_HOLES];
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        this.holes = new int [2][BoardLearn.NB_HOLES];
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
         {
             this.holes [0][i] = BoardLearn.NB_SEEDS;
             this.holes [1][i] = BoardLearn.NB_SEEDS;
@@ -53,7 +53,7 @@ public class BoardLearn extends Board {
     public int getNbSeeds ()
     {
         int sum = 0;
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
             sum += this.holes [0][i] + this.holes [1][i];
         return sum;
     }
@@ -64,7 +64,7 @@ public class BoardLearn extends Board {
     public int getPlayerSeeds ()
     {
         int sum = 0;
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
             sum += this.holes [this.currentPlayer][i];
         return sum;
     }
@@ -75,8 +75,8 @@ public class BoardLearn extends Board {
     public int getOpponentSeeds ()
     {
         int sum = 0;
-        for (int i = 0; i < Board.NB_HOLES; i++)
-            sum += this.holes [Board.otherPlayer (this.currentPlayer)][i];
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
+            sum += this.holes [BoardLearn.otherPlayer (this.currentPlayer)][i];
         return sum;
     }
 
@@ -96,7 +96,7 @@ public class BoardLearn extends Board {
      */
     public int [] getOpponentHoles ()
     {
-        int otherPlayer = Board.otherPlayer (this.currentPlayer);
+        int otherPlayer = BoardLearn.otherPlayer (this.currentPlayer);
         int [] holes = new int [this.holes [otherPlayer].length];
         for (int i = 0; i < holes.length; i++)
             holes [i] = this.holes [otherPlayer][i];
@@ -110,7 +110,7 @@ public class BoardLearn extends Board {
 
     void changeCurrentPlayer ()
     {
-        this.setCurrentPlayer (Board.otherPlayer (this.currentPlayer));
+        this.setCurrentPlayer (BoardLearn.otherPlayer (this.currentPlayer));
     }
 
     /**
@@ -125,7 +125,7 @@ public class BoardLearn extends Board {
     int getNbSeeds (int player)
     {
         int sum = 0;
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
             sum += this.holes [player][i];
         return sum;
     }
@@ -145,9 +145,9 @@ public class BoardLearn extends Board {
      */
     public boolean [] validMoves (int player)
     {
-        boolean [] valid = new boolean [Board.NB_HOLES];
-        boolean notEmpty = !this.isEmpty (Board.otherPlayer (player));
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        boolean [] valid = new boolean [BoardLearn.NB_HOLES];
+        boolean notEmpty = !this.isEmpty (BoardLearn.otherPlayer (player));
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
             valid [i] = (this.holes [player][i] > 0) && (notEmpty || (i + this.holes [player][i] >= 6));
         return valid;
     }
@@ -158,7 +158,7 @@ public class BoardLearn extends Board {
         int bestMove = -1;
         double bestDecision = -Double.MAX_VALUE;
         int nbBest = 0;
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
             if (Double.isNaN (decision [i]))
                 throw new InvalidBotException ("NaN dans le vecteur de prise de décision");
             else if (valid [i])
@@ -173,7 +173,7 @@ public class BoardLearn extends Board {
         {
             int select = this.random.nextInt (nbBest);
             loop:
-            for (int i = 0; i < Board.NB_HOLES; i++)
+            for (int i = 0; i < BoardLearn.NB_HOLES; i++)
                 if (valid [i] && (decision [i] == bestDecision))
                     if (select == 0)
                     {
@@ -189,11 +189,11 @@ public class BoardLearn extends Board {
     private boolean takeAll (int player, int currentHole)
     {
         boolean takeAll = true;
-        int opponent = Board.otherPlayer (player);
+        int opponent = BoardLearn.otherPlayer (player);
         for (int i = 0; i <= currentHole; i++)
             if ((this.holes [opponent][i] == 1) || (this.holes [opponent][i] > 3))
                 takeAll = false;
-        for (int i = currentHole + 1; i < Board.NB_HOLES; i++)
+        for (int i = currentHole + 1; i < BoardLearn.NB_HOLES; i++)
             if (this.holes [opponent][i] != 0)
                 takeAll = false;
         return takeAll;
@@ -218,9 +218,9 @@ public class BoardLearn extends Board {
             while (nbSeeds > 0)
             {
                 currentHole++;
-                if (currentHole >= Board.NB_HOLES)
+                if (currentHole >= BoardLearn.NB_HOLES)
                 {
-                    currentSide = Board.otherPlayer (currentSide);
+                    currentSide = BoardLearn.otherPlayer (currentSide);
                     currentHole = 0;
                 }
                 if ((currentSide != player) || (currentHole != bestMove))
@@ -229,7 +229,7 @@ public class BoardLearn extends Board {
                     nbSeeds--;
                 }
             }
-            if ((currentSide == Board.otherPlayer (player))
+            if ((currentSide == BoardLearn.otherPlayer (player))
                     && ((this.holes [currentSide][currentHole] == 2) || (this.holes [currentSide][currentHole] == 3))
                     && !this.takeAll (player, currentHole))
             {
@@ -298,14 +298,14 @@ public class BoardLearn extends Board {
     public String toString ()
     {
         String string = "|";
-        for (int i = Board.NB_HOLES - 1; i >= 0; i--)
+        for (int i = BoardLearn.NB_HOLES - 1; i >= 0; i--)
         {
             if (this.holes [1][i] < 10)
                 string += " ";
             string += this.holes [1][i] + "|";
         }
         string += "\n|";
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
         {
             if (this.holes [0][i] < 10)
                 string += " ";
@@ -321,7 +321,7 @@ public class BoardLearn extends Board {
         clone.currentPlayer = this.currentPlayer;
         clone.score [0] = this.score [0];
         clone.score [1] = this.score [1];
-        for (int i = 0; i < Board.NB_HOLES; i++)
+        for (int i = 0; i < BoardLearn.NB_HOLES; i++)
         {
             clone.holes [0][i] = this.holes [0][i];
             clone.holes [1][i] = this.holes [1][i];
