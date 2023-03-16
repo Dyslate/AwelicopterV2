@@ -1,160 +1,24 @@
 Mémoire totale : 4,0 GiB
 Instanciation du bot "Random"
-5 classes ont été trouvées
+6 classes ont été trouvées
 class awele.bot.demo.random.RandomBot
 class awele.bot.competitor.fullDogo.fullDogoBot
 class awele.bot.random.RandomBot
 class awele.bot.competitor.Awelicopter.Awelicopter
 class awele.bot.competitor.minmaxbetter.MinMaxBetter
+class awele.bot.competitor.ghofryBot.NegascountBot
 
-Bot 1/5
+Bot 1/6
 Classe : awele.bot.demo.random.RandomBot
 Instanciation du bot "Random"
 Nom du bot : Random
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
 Usage mémoire : 0 B
-Usage mémoire maximum : 440,8 KiB
+Usage mémoire maximum : 403,0 KiB
 
-Bot 2/5
+Bot 2/6
 Classe : awele.bot.competitor.fullDogo.fullDogoBot
 Instanciation du bot "FullDogo"
 Nom du bot : FullDogo
 Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.145
-Usage mémoire : 390,2 KiB
-Usage mémoire maximum : 19,4 MiB
-
-Bot 3/5
-Classe : awele.bot.random.RandomBot
-Instanciation du bot "Random"
-Nom du bot : Random
-Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.000
-Usage mémoire : 600 B
-Usage mémoire maximum : 397,6 KiB
-
-Bot 4/5
-Classe : awele.bot.competitor.Awelicopter.Awelicopter
-Instanciation du bot "Awelicopter"
-Nom du bot : Awelicopter
-Instanciation du bot "Random"
-Instanciation du bot "Awelicopter"
-Instanciation du bot "Awelicopter"
-Instanciation du bot "Awelicopter"
-Instanciation du bot "Awelicopter"
-Temps d'apprentissage : 00:00:27.221
-Durée d'une prise de décision : 00:00:00.131
-Usage mémoire : 77,0 KiB
-Usage mémoire maximum : 150,7 MiB
-
-Bot 5/5
-Classe : awele.bot.competitor.minmaxbetter.MinMaxBetter
-Instanciation du bot "IAWELEBetter - avec heuristique et profondeur 15"
-Nom du bot : IAWELEBetter - avec heuristique et profondeur 15
-Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.191
-Usage mémoire : 936 B
-Usage mémoire maximum : 22,0 MiB
-
-5 bots ont été instanciés
-Durée du chargement : 00:00:45.386
-Mémoire utilisée : 2,0 MiB
-
-Que le championnat commence !
-
-Affrontement 1/10
-Random vs. FullDogo
-Score : 0.0 - 3.0
-FullDogo a gagné
-Nombre de coups joués : 37.86 par match
-Durée : 00:00:02.034 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 2/10
-Random vs. Random
-Score : 1.52 - 1.4
-Random a gagné
-Nombre de coups joués : 92.1 par match
-Durée : 00:00:00.000 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 3/10
-Random vs. Awelicopter
-Score : 0.0 - 3.0
-Awelicopter a gagné
-Nombre de coups joués : 40.1 par match
-Durée : 00:00:02.869 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 4/10
-Random vs. IAWELEBetter - avec heuristique et profondeur 15
-Score : 0.0 - 3.0
-IAWELEBetter - avec heuristique et profondeur 15 a gagné
-Nombre de coups joués : 60.98 par match
-Durée : 00:00:08.417 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 5/10
-FullDogo vs. Random
-Score : 3.0 - 0.0
-FullDogo a gagné
-Nombre de coups joués : 39.82 par match
-Durée : 00:00:02.238 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 6/10
-FullDogo vs. Awelicopter
-Score : 0.84 - 1.92
-Awelicopter a gagné
-Nombre de coups joués : 107.82 par match
-Durée : 00:00:22.481 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 7/10
-FullDogo vs. IAWELEBetter - avec heuristique et profondeur 15
-Score : 0.92 - 2.0
-IAWELEBetter - avec heuristique et profondeur 15 a gagné
-Nombre de coups joués : 106.86 par match
-Durée : 00:00:40.661 par match
-Mémoire utilisée : 1,9 MiB
-
-Affrontement 8/10
-Random vs. Awelicopter
-Score : 0.0 - 3.0
-Awelicopter a gagné
-Nombre de coups joués : 39.38 par match
-Durée : 00:00:03.760 par match
-Mémoire utilisée : 1,7 MiB
-
-Affrontement 9/10
-Random vs. IAWELEBetter - avec heuristique et profondeur 15
-Score : 0.0 - 3.0
-IAWELEBetter - avec heuristique et profondeur 15 a gagné
-Nombre de coups joués : 63.38 par match
-Durée : 00:00:11.061 par match
-Mémoire utilisée : 1,7 MiB
-
-Affrontement 10/10
-Awelicopter vs. IAWELEBetter - avec heuristique et profondeur 15
-Score : 2.16 - 0.84
-Awelicopter a gagné
-Nombre de coups joués : 102.82 par match
-Durée : 00:00:37.528 par match
-Mémoire utilisée : 1,7 MiB
-
-Durée du championnat : 01:49:13.219
-
-Scores finaux :
-Random : 1.52
-FullDogo : 7.76
-Random : 1.4
-Awelicopter : 10.08
-IAWELEBetter - avec heuristique et profondeur 15 : 8.84
-
-Rangs :
-1. Awelicopter : 10.08
-2. IAWELEBetter - avec heuristique et profondeur 15 : 8.84
-3. FullDogo : 7.76
-4. Random : 1.52
-5. Random : 1.4

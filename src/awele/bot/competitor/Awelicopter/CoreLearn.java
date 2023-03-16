@@ -104,7 +104,6 @@ public class CoreLearn extends OutputWriter
         this.runningTime += System.currentTimeMillis () - start;
         this.print ("Score: " + game2Score [0] + " - " + game2Score [1]);
         this.runningTime /= 2;
-        //return this.runningTime;
         this.nbMoves /= 2.;
         this.scores [0] = game1Score [0] + game2Score [0];
         this.scores [1] = game1Score [1] + game2Score [1];
