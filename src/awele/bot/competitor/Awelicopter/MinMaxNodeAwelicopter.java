@@ -99,15 +99,16 @@ public abstract class MinMaxNodeAwelicopter
     private static final int BOARD_SIZE = Board.NB_HOLES;
     private static final int MIN_SEEDS_FOR_CAPTURE = 2;
     private static final int MAX_SEEDS_FOR_CAPTURE = 3;
-    private static final int TWELVE = 12;
     private static final int HALF_BOARD_SIZE = BOARD_SIZE / 2;
 
     private int possedeUnBonCoup(Board board) {
         int nb_captures = 0;
+        int[] playerHoles = board.getPlayerHoles();
+        int[] opponentHoles = board.getOpponentHoles();
         for (int i = 0; i < BOARD_SIZE; i++) {
-            int player_seeds = board.getPlayerHoles()[i];
+            int player_seeds = playerHoles[i];
             int opponent_index = (i + player_seeds) % BOARD_SIZE;
-            int opponent_seeds = board.getOpponentHoles()[opponent_index];
+            int opponent_seeds = opponentHoles[opponent_index];
             int total_seeds = player_seeds + opponent_seeds;
             int range = ( player_seeds + i + ( player_seeds + i ) / 12 - Board.NB_HOLES ) % 12;
             if(range>=HALF_BOARD_SIZE){
@@ -116,9 +117,8 @@ public abstract class MinMaxNodeAwelicopter
             if (opponent_index >= HALF_BOARD_SIZE || opponent_seeds == 0) {
                 continue;
             }
-
             int target_index = BOARD_SIZE - opponent_index - 1;
-            int target_seeds = board.getPlayerHoles()[target_index] + (total_seeds / TWELVE);
+            int target_seeds = playerHoles[target_index] + (total_seeds / 12);
 
             if (target_seeds >= MIN_SEEDS_FOR_CAPTURE && target_seeds <= MAX_SEEDS_FOR_CAPTURE) {
                 nb_captures++;
@@ -127,27 +127,6 @@ public abstract class MinMaxNodeAwelicopter
         return nb_captures;
     }
 
-    /*
-     * renvoie le nombre de cases ou il y a des graines capturables au prochain coup
-     * */
-
-    /*OLD
-    private int possedeUnBonCoup( Board board ) {
-        int nb_captures = 0;
-        for ( int i = 0 ; i < Board.NB_HOLES ; i++ ) {
-            int grainesJoueur = board.getPlayerHoles()[ i ];
-            if ((grainesJoueur + i + (grainesJoueur + i) / 12 < Board.NB_HOLES )) grainesJoueur += 12;
-            int range = ( grainesJoueur + i + ( grainesJoueur + i ) / 12 - Board.NB_HOLES ) % 12;
-            if ( range >= 6 )
-                break;
-            int grainesCible = board.getOpponentHoles()[ range ];
-            int target_seeds_post_attack = ( grainesCible + ( grainesJoueur + i ) / 12 ) + 1;
-            boolean capture = target_seeds_post_attack >= 2 && target_seeds_post_attack <= 3;
-            if ( capture ) nb_captures++;
-        }
-        return nb_captures;
-    }
-    */
 
         /** Pire score pour un joueur */
     protected abstract double worst ();
