@@ -1,26 +1,37 @@
 package awele.bot.competitor.minmaxbetter;
 
+import awele.bot.Bot;
 import awele.bot.CompetitorBot;
+import awele.bot.random.RandomBot;
+import awele.core.Awele;
 import awele.core.Board;
 import awele.core.InvalidBotException;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 
 public class MinMaxBetter extends CompetitorBot {
 
     private int depth[];  //le tableau de profondeur en fonction du nombre de graine, eventuellement suppl�mente par une heuristique
 
-    /* coefficients pour la fonction d'evaluation */
-
-    private double krouscoeff;
-    private double dangercoeff;
-    private double scorecoeff;
-
-
+    private int maDepth;
     public MinMaxBetter() throws InvalidBotException {
-        this.setBotName("IAWELEBetter - avec heuristique et profondeur 15");
+        maDepth = 7;
+        depth = new int[49];
+        for(int i = 0;i < 49;i++) {
+            depth[i] = maDepth - (i/10);
+        }
+        this.setBotName("IAWELEBetter - avec heuristique et profondeur 15 depth+2 et maprof");
+        this.addAuthor("R. LAGLER, T. FELKER");
+    }
+
+    public MinMaxBetter(int depthGiven) throws InvalidBotException {
+        maDepth = depthGiven;
+        depth = new int[49];
+        for(int i = 0;i < 49;i++) {
+            depth[i] = maDepth - (i/10);
+        }
+        this.setBotName("IAWELEBetter - avec heuristique et profondeur 15+2");
         this.addAuthor("R. LAGLER, T. FELKER");
     }
 
@@ -59,12 +70,13 @@ public class MinMaxBetter extends CompetitorBot {
             if(!validMoves[j])
                 unvalid +=1;
         }
+        int maprof = depth[curseed] + unvalid/2;
 
         for(int i = 0; i < 6; i++) {
             if (validMoves[i]) {
                 decisionBis[i] = i+1;
                 try {
-                    decision[i] = miniMax(-100,100, (int) (depth[curseed]) , board.playMoveSimulationBoard(curp, decisionBis), false);
+                    decision[i] = miniMax(-100,100, maprof , board.playMoveSimulationBoard(curp, decisionBis), false);
 
                 } catch (InvalidBotException e) {}
             }
@@ -110,8 +122,8 @@ public class MinMaxBetter extends CompetitorBot {
      * @param board le plateau de jeu courant
      * @return une partie de la fonction evaluation en fonction du nombre de krous et trous dangereux du joueur
      */
-    public double getBoardState(Board board) {
-        int score = TALLY_WEIGHT * (board.getScore(board.getCurrentPlayer()) - board.getScore(1 - board.getCurrentPlayer()));
+    public double getBoardState(Board board,int depth) {
+        int score = TALLY_WEIGHT * (board.getScore(board.getCurrentPlayer()) - board.getScore(1 - board.getCurrentPlayer())); //Heuristique a nous
         int[] oppHoles = board.getOpponentHoles();
         int[] playerHoles = board.getPlayerHoles();
 
@@ -135,46 +147,7 @@ public class MinMaxBetter extends CompetitorBot {
             }
         }
 
-        return score;/**
-        int scoreSeeds = 0;
-
-        int cHasKrou = 0;
-        int aHasKrou = 0;
-
-        boolean isPair;
-        if(depth % 2 == 0) {
-            isPair = true;
-        }else {
-            isPair = false;
-        }
-
-
-        for(int i = 0; i < Board.NB_HOLES; i++) {
-            if(board.getPlayerHoles()[i] < 3 ) {
-                if(isPair)
-                    scoreSeeds++;
-                else
-                    scoreSeeds--;
-            }
-
-            if(board.getOpponentHoles()[i] < 3 ) {
-                if(isPair)
-                    scoreSeeds--;
-                else
-                    scoreSeeds++;
-            }
-
-            if(board.getPlayerHoles()[i] >= 11) {
-                cHasKrou = 1;
-            }
-
-            if(board.getOpponentHoles()[i] >= 11) {
-                aHasKrou = 1;
-            }
-
-        }
-
-        return scoreSeeds + aHasKrou - cHasKrou;*/
+        return score;
     }
 
     /**
@@ -190,8 +163,20 @@ public class MinMaxBetter extends CompetitorBot {
 
         int curp = board.getCurrentPlayer();
 
+        if(depth == 0 && board.getNbSeeds() < 20){
+            int unvalid =0;
+            boolean[] validMoves = board.validMoves(curp);
+            for(int j = 0;j < 6;j++) {
+                if(!validMoves[j])
+                    unvalid +=1;
+            }
+            if(unvalid>3) {
+                depth = 1;
+            }
+        }
+
         if (depth == 0 || isFinalLeaf(board,curp))
-            return getBoardState(board) * (isMax? 1 : -1); //la fonction d'�valuation, �crite ici car appel�e enormement de fois
+            return getBoardState(board,depth) * (isMax ? 1 : -1);
 
         double v = 0;
         boolean[] validMoves = board.validMoves(curp);
@@ -221,8 +206,6 @@ public class MinMaxBetter extends CompetitorBot {
                 }
             }
         }
-
-
         return v;
     }
 
@@ -233,18 +216,61 @@ public class MinMaxBetter extends CompetitorBot {
     @Override
     public void learn() {
 
+        int goodDepth = this.maDepth;
+        long start = System.currentTimeMillis();
+        RandomBot random = null;
+        try {
+            random = new RandomBot();
+            random.learn();
+        } catch (InvalidBotException e) {
+            throw new RuntimeException(e);
+        }
+        long randomRunningTime = 0;
+        int nbMoves = 0;
+
+        for (int k = 0; k < 100; k++) {
+            Awele awele = new Awele(random, random);
+            try {
+                awele.play();
+            } catch (InvalidBotException e) {
+                throw new RuntimeException(e);
+            }
+            nbMoves += awele.getNbMoves();
+            randomRunningTime += awele.getRunningTime();
+        }
+        long randomAverageDecisionTime = randomRunningTime / nbMoves;
+
+        try {
+            for (int i = 1; i < 100; i++) {
+                Bot b;
+                b = new MinMaxBetter(this.maDepth + i);
+                System.out.println("Test de la profondeur " + (this.maDepth + i));
+                Awele awele = new Awele(b, random);
+                awele.play();
+                long decisionTime = (long) ((2 * awele.getRunningTime()) / awele.getNbMoves()) - randomAverageDecisionTime;
+                if (decisionTime > 0.80*200) {
+                    goodDepth = this.maDepth + i - 1;
+                    System.out.println("C'est bon : "+decisionTime+ " ; "+goodDepth);
+
+                    break;
+                }else{
+                    System.out.println("On augmente ! "+decisionTime);
+                }
+            }
+        } catch (InvalidBotException e) {
+            throw new RuntimeException(e);
+        }
+        this.maDepth = goodDepth;
+        System.out.println("Profondeur finale : " + this.maDepth);
+
         /* initialisation des variables */
 
         depth = new int[49];
 
-        krouscoeff = 0.41;
-        dangercoeff = 0.11;
-        scorecoeff = 0.89;
-
 
         /*valeurs par d�faut du tableau de profondeur. Plus la partie augmente plus la profondeur est grande */
         for(int i = 0;i < 49;i++) {
-            depth[i] = 15 - (i/10);
+            depth[i] = maDepth - (i/10);
         }
 
     }

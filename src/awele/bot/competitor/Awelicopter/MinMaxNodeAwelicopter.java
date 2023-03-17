@@ -4,7 +4,7 @@ import awele.core.Board;
 import awele.core.InvalidBotException;
 
 /**
- * @author Alexandre Blansché
+ * @author Tim BRANSTETT - Lucas FRANCHINA
  * Noeud d'un arbre MinMax
  */
 public abstract class MinMaxNodeAwelicopter
@@ -36,8 +36,8 @@ public abstract class MinMaxNodeAwelicopter
             /* Initialisation de l'évaluation courante */
             this.evaluation = this.worst();
 
-            if(Awelicopter.goodDepth + 2 - (board.getNbSeeds() / 10)>maxDepth&&Awelicopter.goodDepth!=0){
-                maxDepth = Awelicopter.goodDepth + 3 - (board.getNbSeeds() / 10);
+            if(Awelicopter.goodDepth + 4 - (board.getNbSeeds() / 10)>maxDepth&&Awelicopter.goodDepth!=0){
+                maxDepth = Awelicopter.goodDepth + 4 - (board.getNbSeeds() / 10);
             }
 
             /* On parcourt toutes les coups possibles */

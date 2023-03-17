@@ -10,7 +10,7 @@ public class Awelicopter extends CompetitorBot {
 
     public int depth;
     public static int goodDepth;
-    public int margeInit = 20;
+    public int margeInit = 50;
     public Awelicopter () throws InvalidBotException
     {
         this.setBotName ("Awelicopter");
@@ -97,8 +97,9 @@ public class Awelicopter extends CompetitorBot {
                 String decisionTimeString = String.valueOf(extractMilliseconds(decisionTime));
                 System.out.println("Temps de décision : "+decisionTimeString+" ms pour la profondeur "+i);
                 if(Integer.parseInt(decisionTimeString)>200-margeInit){
-                 System.out.println("Awélicopter sera initialisé à la profondeur : "+(i-1)+" avec une marge de sécurité de : "+margeInit+" ms");
                     goodDepth = i - 1;
+                    System.out.println("Awélicopter sera initialisé à la profondeur : "+goodDepth+" avec une marge de sécurité de : "+margeInit+" ms");
+
                     break;
                 }
             } catch (InvalidBotException e) {
