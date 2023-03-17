@@ -61,7 +61,6 @@ public class Board
     }
     
     /**
-     * @param player L'index du joueur courant
      * @return Le nombre de graines encore en jeu du côté du joueur courant
      */
     public int getPlayerSeeds ()
@@ -73,7 +72,6 @@ public class Board
     }
     
     /**
-     * @param player L'index du joueur adverse
      * @return Le nombre de graines encore en jeu du côté du joueur adverse
      */
     public int getOpponentSeeds ()
@@ -160,7 +158,7 @@ public class Board
     {
         boolean [] valid = this.validMoves (player);
         int bestMove = -1;
-        double bestDecision = -Double.MAX_VALUE;
+        double bestDecision = Double.NEGATIVE_INFINITY;
         int nbBest = 0;
         for (int i = 0; i < Board.NB_HOLES; i++)
             if (Double.isNaN (decision [i]))

@@ -20,7 +20,6 @@ public abstract class MinMaxNodeAwelicopter
 
     /** Évaluation des coups selon MinMax */
     private double [] decision;
-    static int compteur = 0;
 
     public static int nbGrainesTotale = 48;
     /**
@@ -36,8 +35,8 @@ public abstract class MinMaxNodeAwelicopter
             /* Initialisation de l'évaluation courante */
             this.evaluation = this.worst();
 
-            if(Awelicopter.goodDepth + 4 - (board.getNbSeeds() / 10)>maxDepth&&Awelicopter.goodDepth!=0){
-                maxDepth = Awelicopter.goodDepth + 4 - (board.getNbSeeds() / 10);
+            if(Awelicopter.goodDepth!=0){
+                maxDepth = Awelicopter.goodDepth + 5 - (int)(Math.round(board.getNbSeeds() / 10.0));
             }
 
             /* On parcourt toutes les coups possibles */
@@ -70,8 +69,6 @@ public abstract class MinMaxNodeAwelicopter
                             /* Sinon (si la profondeur maximale est atteinte), on évalue la situation actuelle */
                             else {
                                 this.decision[i] = evalSituation(copy, depth) + possedeUnBonCoup(copy) + diffScore(copy);
-
-                                //   this.decision[i] = goodStrategy(copy, i) + evalSituation(copy, depth) + diffScore(copy);
                             }
                         }
                         /* L'évaluation courante du noeud est mise à jour, selon le type de noeud (MinNode ou MaxNode) */
@@ -128,7 +125,7 @@ public abstract class MinMaxNodeAwelicopter
     }
 
 
-        /** Pire score pour un joueur */
+    /** Pire score pour un joueur */
     protected abstract double worst ();
 
     /**
@@ -136,7 +133,7 @@ public abstract class MinMaxNodeAwelicopter
      */
     protected static void initialize (Board board, int depth)
     {
-        MinMaxNodeAwelicopter.maxDepth = depth + (int)Math.round(((nbGrainesTotale)*1.0)/board.getNbSeeds());;
+        MinMaxNodeAwelicopter.maxDepth = depth;
         MinMaxNodeAwelicopter.player = board.getCurrentPlayer ();
     }
 
