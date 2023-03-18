@@ -68,7 +68,8 @@ public abstract class MinMaxNodeAwelicopter
                             }
                             /* Sinon (si la profondeur maximale est atteinte), on évalue la situation actuelle */
                             else {
-                                this.decision[i] = evalSituation(copy, depth) + possedeUnBonCoup(copy) + diffScore(copy);
+                                //this.decision[i] = evalSituation(copy, depth) + possedeUnBonCoup(copy) + diffScore(copy);
+                                this.decision[i] = newEvalSituation(copy,depth) + diffScore(copy);
                             }
                         }
                         /* L'évaluation courante du noeud est mise à jour, selon le type de noeud (MinNode ou MaxNode) */
@@ -93,10 +94,7 @@ public abstract class MinMaxNodeAwelicopter
     /*
      * renvoie le nombre de cases ou il y a des graines capturables au prochain coup
      * */
-    private static final int BOARD_SIZE = Board.NB_HOLES;
-    private static final int MIN_SEEDS_FOR_CAPTURE = 2;
-    private static final int MAX_SEEDS_FOR_CAPTURE = 3;
-    private static final int HALF_BOARD_SIZE = BOARD_SIZE / 2;
+
 
     private int possedeUnBonCoup(Board board) {
         int nb_captures = 0;
@@ -124,6 +122,80 @@ public abstract class MinMaxNodeAwelicopter
         return nb_captures;
     }
 
+    static double attackWeight = 1;
+    static double defenceWeight = 1;
+
+    private static final int BOARD_SIZE = Board.NB_HOLES;
+    private static final int MIN_SEEDS_FOR_CAPTURE = 2;
+    private static final int MAX_SEEDS_FOR_CAPTURE = 3;
+    private static final int HALF_BOARD_SIZE = BOARD_SIZE / 2;
+
+    public static double newEvalSituation(Board board, int depth){
+
+
+        int nb_captures = 0;
+        int[] playerHoles = board.getPlayerHoles();
+        int[] opponentHoles = board.getOpponentHoles();
+
+        int compteurGraine = 0;
+        int compteurKrou = 0;
+
+        boolean isPair = (depth % 2 == 0);
+
+        for(int i = 0; i < Board.NB_HOLES; i++) {
+
+
+
+            compteurGraine += (playerHoles[i] < 3) ? (isPair ? defenceWeight : -defenceWeight)  : 0;
+            compteurGraine += (opponentHoles[i] < 3) ? (isPair ? -defenceWeight : defenceWeight)  : 0;
+            compteurKrou += (playerHoles[i] >= 11) ? attackWeight: 0;
+            compteurKrou -= (opponentHoles[i] >= 11) ? attackWeight : 0;
+
+
+            int player_seeds = playerHoles[i];
+            int opponent_index = (i + player_seeds) % BOARD_SIZE;
+            int opponent_seeds = opponentHoles[opponent_index];
+            int total_seeds = player_seeds + opponent_seeds;
+            int range = ( player_seeds + i + ( player_seeds + i ) / 12 - Board.NB_HOLES ) % 12;
+            if(range>=HALF_BOARD_SIZE){
+                break;
+            }
+            if (opponent_index >= HALF_BOARD_SIZE || opponent_seeds == 0) {
+                continue;
+            }
+            int target_index = BOARD_SIZE - opponent_index - 1;
+            int target_seeds = playerHoles[target_index] + (total_seeds / 12);
+
+            if (target_seeds >= MIN_SEEDS_FOR_CAPTURE && target_seeds <= MAX_SEEDS_FOR_CAPTURE) {
+                nb_captures++;
+            }
+        }
+
+        return compteurGraine + compteurKrou + nb_captures;
+
+
+    }
+
+    public static double evalSituation(Board board, int depth) {
+
+        int[] playerHoles = board.getPlayerHoles();
+        int[] opponentHoles = board.getOpponentHoles();
+
+        int compteurGraine = 0;
+        int compteurKrou = 0;
+
+        boolean isPair = (depth % 2 == 0);
+
+        for(int i = 0; i < Board.NB_HOLES; i++) {
+            compteurGraine += (playerHoles[i] < 3) ? (isPair ? 1 : -1) : 0;
+            compteurGraine += (opponentHoles[i] < 3) ? (isPair ? -1 : 1) : 0;
+            compteurKrou += (playerHoles[i] >= 11) ? 1 : 0;
+            compteurKrou -= (opponentHoles[i] >= 11) ? 1 : 0;
+        }
+
+        return compteurGraine + compteurKrou;
+    }
+
 
     /** Pire score pour un joueur */
     protected abstract double worst ();
@@ -141,6 +213,10 @@ public abstract class MinMaxNodeAwelicopter
     {
         return board.getScore (MinMaxNodeAwelicopter.player) - board.getScore (Board.otherPlayer (MinMaxNodeAwelicopter.player));
     }
+
+
+
+
 
     /**
      * Mise à jour de alpha
@@ -196,25 +272,10 @@ public abstract class MinMaxNodeAwelicopter
 
 
 
-    public static double evalSituation(Board board, int depth) {
 
-        int[] playerHoles = board.getPlayerHoles();
-        int[] opponentHoles = board.getOpponentHoles();
 
-        int compteurGraine = 0;
-        int compteurKrou = 0;
 
-        boolean isPair = (depth % 2 == 0);
 
-        for(int i = 0; i < Board.NB_HOLES; i++) {
-            compteurGraine += (playerHoles[i] < 3) ? (isPair ? 1 : -1) : 0;
-            compteurGraine += (opponentHoles[i] < 3) ? (isPair ? -1 : 1) : 0;
-            compteurKrou += (playerHoles[i] >= 11) ? 1 : 0;
-            compteurKrou -= (opponentHoles[i] >= 11) ? 1 : 0;
-        }
-
-        return compteurGraine + compteurKrou;
-    }
     /**
      * L'évaluation de chaque coup possible pour le noeud
      * @return

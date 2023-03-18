@@ -14,16 +14,16 @@ Nom du bot : Random
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
 Usage mémoire : 0 B
-Usage mémoire maximum : 465,7 KiB
+Usage mémoire maximum : 395,5 KiB
 
 Bot 2/5
 Classe : awele.bot.competitor.fullDogo.fullDogoBot
 Instanciation du bot "FullDogo"
 Nom du bot : FullDogo
 Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.114
-Usage mémoire : 390,9 KiB
-Usage mémoire maximum : 116,4 MiB
+Durée d'une prise de décision : 00:00:00.120
+Usage mémoire : 390,3 KiB
+Usage mémoire maximum : 141,9 MiB
 
 Bot 3/5
 Classe : awele.bot.random.RandomBot
@@ -32,7 +32,7 @@ Nom du bot : Random
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
 Usage mémoire : 600 B
-Usage mémoire maximum : 405,2 KiB
+Usage mémoire maximum : 355,5 KiB
 
 Bot 4/5
 Classe : awele.bot.competitor.Awelicopter.Awelicopter
@@ -43,11 +43,10 @@ Instanciation du bot "Awelicopter"
 Instanciation du bot "Awelicopter"
 Instanciation du bot "Awelicopter"
 Instanciation du bot "Awelicopter"
-Instanciation du bot "Awelicopter"
-Temps d'apprentissage : 00:00:21.783
-Durée d'une prise de décision : 00:00:00.137
-Usage mémoire : 124,6 KiB
-Usage mémoire maximum : 12,7 MiB
+Temps d'apprentissage : 00:00:13.795
+Durée d'une prise de décision : 00:00:00.127
+Usage mémoire : 124,2 KiB
+Usage mémoire maximum : 30,2 MiB
 
 Bot 5/5
 Classe : awele.bot.competitor.minmaxbetter.MinMaxBetter
@@ -62,64 +61,47 @@ Instanciation du bot "IAWELEBetter - avec heuristique et profondeur 15+2"
 Instanciation du bot "IAWELEBetter - avec heuristique et profondeur 15+2"
 Instanciation du bot "IAWELEBetter - avec heuristique et profondeur 15+2"
 Instanciation du bot "IAWELEBetter - avec heuristique et profondeur 15+2"
-Temps d'apprentissage : 00:00:27.604
-Durée d'une prise de décision : 00:00:00.105
-Usage mémoire : 50,7 KiB
-Usage mémoire maximum : 127,6 MiB
+Temps d'apprentissage : 00:00:28.777
+Durée d'une prise de décision : 00:00:00.310
+Bot "IAWELEBetter - avec heuristique et profondeur 15 depth+2 et maprof" disqualifié : durée d'une prise de décision trop long
 
-5 bots ont été instanciés
-Durée du chargement : 00:01:08.618
+4 bots ont été instanciés
+Durée du chargement : 00:01:29.858
 Mémoire utilisée : 2,1 MiB
 
 Que le championnat commence !
 
-Affrontement 1/10
+Affrontement 1/6
 Random vs. FullDogo
 Score : 0.0 - 3.0
 FullDogo a gagné
-Nombre de coups joués : 34.5 par match
-Durée : 00:00:02.041 par match
+Nombre de coups joués : 38.76 par match
+Durée : 00:00:02.357 par match
 Mémoire utilisée : 2,0 MiB
 
-Affrontement 2/10
+Affrontement 2/6
 Random vs. Random
-Score : 1.5 - 1.5
-Égalité
-Nombre de coups joués : 81.0 par match
+Score : 1.7 - 1.28
+Random a gagné
+Nombre de coups joués : 94.58 par match
 Durée : 00:00:00.000 par match
 Mémoire utilisée : 2,0 MiB
 
-Affrontement 3/10
+Affrontement 3/6
 Random vs. Awelicopter
 Score : 0.0 - 3.0
 Awelicopter a gagné
-Nombre de coups joués : 40.5 par match
-Durée : 00:00:02.728 par match
+Nombre de coups joués : 37.68 par match
+Durée : 00:00:01.873 par match
 Mémoire utilisée : 2,0 MiB
 
-Affrontement 4/10
-Random vs. IAWELEBetter - avec heuristique et profondeur 15 depth+2 et maprof
-Score : 0.0 - 3.0
-IAWELEBetter - avec heuristique et profondeur 15 depth+2 et maprof a gagné
-Nombre de coups joués : 68.0 par match
-Durée : 00:00:05.737 par match
-Mémoire utilisée : 2,0 MiB
-
-Affrontement 5/10
+Affrontement 4/6
 FullDogo vs. Random
 Score : 3.0 - 0.0
 FullDogo a gagné
-Nombre de coups joués : 28.5 par match
-Durée : 00:00:01.395 par match
+Nombre de coups joués : 38.69 par match
+Durée : 00:00:02.410 par match
 Mémoire utilisée : 2,0 MiB
 
-Affrontement 6/10
+Affrontement 5/6
 FullDogo vs. Awelicopter
-Score : 0.0 - 3.0
-Awelicopter a gagné
-Nombre de coups joués : 121.25 par match
-Durée : 00:00:23.838 par match
-Mémoire utilisée : 2,0 MiB
-
-Affrontement 7/10
-FullDogo vs. IAWELEBetter - avec heuristique et profondeur 15 depth+2 et maprof
